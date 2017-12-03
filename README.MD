@@ -21,4 +21,4 @@ PHP
 
 ## See in action
 
-* [Server](http://highfinance.byethost7.com/Gauges/) - The web framework used
+* [Gauges Server, PLEASE CLICK](http://highfinance.byethost7.com/Gauges/) - Please CLICK ON THE LINK
