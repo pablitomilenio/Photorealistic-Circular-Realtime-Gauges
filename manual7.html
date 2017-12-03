@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Service Level Agreement</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="jquery.cookie.js"></script>
+    <script src="js/aro5.js"></script>
+
+    <style>
+        #tacho,
+        #fill {
+            position: absolute;
+        }
+        
+        .arrow {
+            height: 330px;
+            position: absolute;
+            transform-origin: 50% 84%;
+            opacity: 0;
+            z-index: 10;
+        }
+
+
+        
+        .trans,
+        .nums {
+            transform-origin: 100% 50%;
+            width: 300px;
+            position: absolute;
+            background-color: transparent;
+            border: 0px solid black;
+            padding: 0;
+        }
+
+        .tick1 {
+            border: 0px solid black;
+            padding-left:50px;
+            filter: drop-shadow(5px 5px 5p orange);
+        }
+        
+        .nums {
+            padding-left: 40px;
+            border: 0px solid black;
+            background-color: transparent;
+        }
+        
+        .iNums {
+            font-size: 40px;
+            font-weight: bolder;
+            font-family: Calibri;
+            border: 0px solid black;
+            width: 50px;
+            color: orangered;
+            z-index: 0;
+            margin-left:60px;
+
+            
+        }
+        
+        .iNums.NumRed {
+            color: darkgray;
+            text-shadow: 1px 1px 2px black, 0 0 4px darkred, 0 0 5px mediumvioletred;
+        }
+        
+        .iNums.NumYellow {
+            color: darkgray;
+            text-shadow: 1px 1px 2px black, 0 0 4px darkgoldenrod, 0 0 5px yellow;
+        }
+        
+        .iNums.NumGreen {
+            color: darkgray;
+            text-shadow: 1px 1px 2px black, 0 0 4px green, 0 0 5px lawngreen;
+        }
+        
+        #cont1 {
+            transform: rotate(7deg);
+        }
+        
+        #cont2 {}
+        
+        body {
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<script>
+    $numTicks = 15;
+    $max = 100;
+    $min = 69;
+    $step = ($max - $min) / ($numTicks - 1);
+    stepWidth = 18;
+    initialTilt = 37;
+    tickFile = "img/NewArranged/greenTick.png";
+
+    yellowThreshold = 84;
+    redThreshold = 80;
+
+    /* red 0-80
+    yellow 80-84
+    green 84-100*/
+</script>
+
+
+<body>
+    <img id="fill" src="imgFinal/backgrounds/white stone2.png" onload="cter++" style="opacity:0.8" />
+    <img id="tacho" src="img/NewArranged/bg2.png" onload="cter++" />
+
+
+    <img id="rot" class="arrow" src="imgFinal/Zeiger/rolex/rred.png" onload="cter++" style="display.:none;">
+    <img id="gelb" class="arrow" src="imgFinal/Zeiger/rolex/ryellow.png" onload="cter++" style="display.:none;">
+    <img id="gruen" class="arrow" src="imgFinal/Zeiger/rolex/rgreen.png" onload="cter++" style="display.:none;"> 
+
+<!--
+    <img id="rot" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 red.png" onload="cter++" style="display.:none;">
+    <img id="gelb" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 yellow.png" onload="cter++" style="display.:none;">
+    <img id="gruen" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 green.png" onload="cter++" style="display.:none;">
+    !-->
+</body>
+<script>
+    $('#fill').height(window.innerHeight - 35);
+    $('#fill').width(window.innerHeight - 35);
+    $('#fill').css('left', (window.innerWidth / 2 - (window.innerHeight - 15) / 2) + 'px');
+    $('#fill').css('top', '30px');
+
+
+
+    $('#tacho').height(window.innerHeight - 15);
+    $('#tacho').width(window.innerHeight);
+    $('#tacho').css('left', (window.innerWidth / 2 - (window.innerHeight + 20) / 2) + 'px');
+
+
+
+
+    function addTick() {
+        var divArr = new Array();
+        for ($i = 0; $i < $numTicks; $i++) {
+            val = Math.round($min + $step * ($i));
+            tickFile = "imgFinal/Ticks/uhrzeigerD.png";
+            if (val < redThreshold) tickFile = "imgFinal/Ticks/uhrzeigerD.png";
+            if (val >= redThreshold && val <= yellowThreshold) tickFile = "imgFinal/ticks/uhrzeigerD.png";
+
+            divArr[$i] = $("<div id='cont" + $i + "' class='trans'>" +
+                "<img class='tick1' src='" + tickFile + "' align='left' width='15%'/>" +
+                "</div>");
+
+            $("body").append(divArr[$i]);
+            $('#cont' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
+        }
+    }
+
+    addTick();
+
+
+
+
+    function addNum() {
+        var divArr = new Array();
+        for ($i = 0; $i < $numTicks; $i++) {
+
+            val = Math.round($min + $step * ($i));
+            cls = "iNums NumGreen";
+            if (val < redThreshold) cls = "iNums NumRed";
+            if (val >= redThreshold && val <= yellowThreshold) cls = "iNums NumYellow";
+
+
+            divArr[$i] = $("<div class='nums' id='inner" + $i + "'><div class='" + cls + "' id='bNums" + $i + "'>" +
+                Math.round(
+                    $min +
+                    $step * ($i)) + "</div></div>");
+
+
+
+            $("body").append(divArr[$i]);
+            $('#inner' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
+            $('#bNums' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) * -1 + 'deg)');
+
+        }
+    }
+
+    addNum();
+
+
+    $('.trans').css('left', (window.innerWidth / 2 - (window.innerHeight - 60) / 2) + 'px');
+    $('.trans').css('top', (window.innerHeight -25) / 2 + 'px');
+    $('.trans').css('width', (window.innerHeight - 80) / 2 + 'px');
+
+    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 70) / 2) + 'px');
+    $('.nums').css('top', (window.innerHeight - 50) / 2 + 'px');
+    $('.nums').css('width', (window.innerHeight - 160) / 2 + 'px');
+
+    $('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 310 + 'px');
+    $('.arrow').css('top', (window.innerHeight) / 2 - 260 + 'px');
+
+    $("#rot").css('opacity', 1);
+
+    $("#rot").animateRotate(-120, -45, 7000, "linear", 0);
+    $("#gelb").animateRotate(-120, -45, 7000, "linear", 100);
+
+    setTimeout(runNext1, 7000);
+    setTimeout(runNext2, 7000 * 2);
+
+    function runNext1() {
+        $("#rot").css('opacity', 0);
+        $("#gelb").animateRotate(-45, 0, 7000, "linear", 0);
+        $("#gruen").animateRotate(-45, 0, 7000, "linear", 100);
+    }
+
+    function runNext2() {
+        $("#gelb").css('opacity', 0);
+        $("#gelb").animateRotate(0, 120, 7000, "linear", 0);
+        $("#gruen").animateRotate(0, 120, 7000, "linear", 100);
+
+    }
+</script>
+
+</html>

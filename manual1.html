@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<title>Service Level Agreement</title>
+	<script src="jquery-3.1.1.min.js"></script>
+	<script src="jquery.cookie.js"></script>
+	<script src="aro.js"></script>
+
+	<style>
+		#tacho,
+		#fill {
+			position: absolute;
+		}
+		
+		.arrow {
+			height: 330px;
+			position: absolute;
+			transform-origin: 50% 74%;
+			opacity: 0;
+			z-index:10;
+		}
+		
+		.trans,
+		.nums {
+			transform-origin: 100% 50%;
+			width: 300px;
+			position: absolute;
+			background-color: transparent;
+			border: 0px solid black;
+			padding: 0;
+		}
+		
+		.nums {
+			padding-left: 40px;
+			border: 0px solid black;
+			background-color: transparent;
+		}
+		
+		.iNums {
+			font-size: 40px;
+			font-weight: bolder;
+			/* text-shadow: 0px 0px 12px rgba(0, 255, 255, 1); */
+			font-family: Calibri;
+			border: 0px solid black;
+			width: 50px;
+			color: #333333;
+			z-index: 0;
+		}
+		
+		#cont1 {
+			transform: rotate(7deg);
+		}
+		
+		#cont2 {}
+		
+		body {
+			background-color: black;
+		}
+	</style>
+
+</head>
+
+<script>
+	$numTicks = 15;
+	$max = 100;
+	$min = 69;
+	$step = ($max - $min) / ($numTicks - 1);
+	stepWidth = 18;
+	initialTilt = 37;
+	tickFile = "img/NewArranged/greenTick.png";
+
+	yellowThreshold = 84;
+	redThreshold = 80;
+
+	/* red 0-80
+	yellow 80-84
+	green 84-100*/
+</script>
+
+
+<body>
+	<img id="fill" src="img/NewArranged/white circle.png" onload="cter++" style="opacity:0.8" />
+	<img id="tacho" src="img/NewArranged/bg2.png" onload="cter++" />
+
+
+	<img id="gelb" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 yellow.png" onload="cter++" style="display.:none;">
+	<img id="gruen" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 green.png" onload="cter++" style="display.:none;">
+	<img id="gruen" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 green.png" onload="cter++" style="display.:none;">
+</body>
+<script>
+	$('#fill').height(window.innerHeight - 35);
+	$('#fill').width(window.innerHeight - 35);
+	$('#fill').css('left', (window.innerWidth / 2 - (window.innerHeight - 15) / 2) + 'px');
+	$('#fill').css('top', '30px');
+
+
+
+	$('#tacho').height(window.innerHeight - 15);
+	$('#tacho').width(window.innerHeight);
+	$('#tacho').css('left', (window.innerWidth / 2 - (window.innerHeight + 20) / 2) + 'px');
+
+
+
+
+	function addTick() {
+		var divArr = new Array();
+		for ($i = 0; $i < $numTicks; $i++) {
+			val = Math.round($min + $step * ($i));
+			tickFile = "img/NewArranged/greenTick.png";
+			if (val < redThreshold) tickFile = "img/NewArranged/redTick.png";
+			if (val >= redThreshold && val <= yellowThreshold) tickFile = "img/NewArranged/yellowTick.png";
+
+			divArr[$i] = $("<div id='cont" + $i + "' class='trans'>" +
+				"<img class='tick1' src='" + tickFile + "' align='left' width='13%'/>" +
+				"</div>");
+
+			$("body").append(divArr[$i]);
+			$('#cont' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
+		}
+	}
+
+	addTick();
+
+
+
+
+	function addNum() {
+		var divArr = new Array();
+		for ($i = 0; $i < $numTicks; $i++) {
+			divArr[$i] = $("<div class='nums' id='inner" + $i + "'><div class='iNums' id='bNums" + $i + "'>" + Math.round($min +
+				$step * ($i)) + "</div></div>");
+
+			$("body").append(divArr[$i]);
+			$('#inner' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
+			$('#bNums' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) * -1 + 'deg)');
+
+		}
+	}
+
+	addNum();
+
+
+	$('.trans').css('left', (window.innerWidth / 2 - (window.innerHeight - 70) / 2) + 'px');
+	$('.trans').css('top', (window.innerHeight - 10) / 2 + 'px');
+	$('.trans').css('width', (window.innerHeight - 80) / 2 + 'px');
+
+	$('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 70) / 2) + 'px');
+	$('.nums').css('top', (window.innerHeight - 40) / 2 + 'px');
+	$('.nums').css('width', (window.innerHeight - 160) / 2 + 'px');
+
+	$('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 310 + 'px');
+	$('.arrow').css('top', (window.innerHeight) / 2 - 260 + 'px');
+
+	$("#gelb").css('opacity', 1);
+	$("#gruen").css('opacity', 0);
+
+
+	$("#gelb").animateRotate(-120, 120, 7000, "linear", 0);
+	$("#gruen").animateRotate(-120, 120, 7000, "linear", 100);
+</script>
+
+</html>

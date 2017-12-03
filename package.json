@@ -1,0 +1,19 @@
+{
+  "name": "gaugedev",
+  "version": "1.0.0",
+  "description": "Graphical Gauge Meters",
+  "main": "myfirst.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablitomilenio/gaugedev.git"
+  },
+  "author": "Pablo Escaida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pablitomilenio/gaugedev/issues"
+  },
+  "homepage": "https://github.com/pablitomilenio/gaugedev#readme"
+}

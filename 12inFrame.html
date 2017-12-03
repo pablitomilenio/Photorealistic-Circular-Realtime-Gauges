@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>Service Level Agreement</title>
+    <script src="jquery-3.1.1.min.js"></script>
+    <script src="jquery.cookie.js"></script>
+    <script src="js/aro8.js"></script>
+    <script src="js/getAngle.js"></script>
+    <script src="js/objects.js"></script>
+
+    <style>
+        #tacho,
+        #fill {
+            position: absolute;
+        }
+        
+        .arrow {
+            z-index:0;
+        }
+        
+        .trans,
+        .nums {
+            transform-origin: 100% 50%;
+            width: 300px;
+            position: absolute;
+            background-color: transparent;
+            border: 0px solid black;
+            padding: 0;
+        }
+        
+        .tick1 {
+            border: 0px solid black;
+            padding-left: 90px;
+            filter: drop-shadow(5px 5px 5p orange);
+            background-color:transparent;
+            opacity:1;
+        }
+        
+        .nums {
+            padding-left: 0px;
+            border: 0px solid black;
+            background-color: transparent;
+            opacity: 1;
+            padding-bottom:0px;
+        }
+        
+        .iNums {
+            font-size: 40px;
+            font-weight: bolder;
+            font-family: Calibri;
+            border: 0px solid black;
+            width: 50px;
+            color: orangered;
+            z-index: 0;
+            margin-left: 65px;
+        }
+        .iNums{
+            padding-left:5px;
+        }
+        
+        .iNums.NumRed {
+            color: darkgray;
+            text-shadow: 1px 1px 2px black, 0 0 4px darkred, 0 0 5px mediumvioletred;
+        }
+        
+        .iNums.NumYellow {
+            color: darkgray;
+            text-shadow: 1px 1px 2px black, 0 0 4px darkgoldenrod, 0 0 5px yellow;
+        }
+        
+        .iNums.NumGreen {
+            color: darkgray;
+            text-shadow: 1px 1px 2px black, 0 0 4px green, 0 0 5px lawngreen;
+        }
+        
+        #cont1 {
+            transform: rotate(7deg);
+        }
+        
+        #cont2 {}
+        
+        body {
+            background-color: black;
+        }
+        
+        #centerNum {
+            position: absolute;
+            color: black;
+            top: 530px;
+            left: 570px;
+            width: 200px;
+            height: 60px;
+            padding-top: 20px;
+            border-radius: 5px;
+            font-size: 40px;
+            z-index: 30;
+            background-color: lightgray;
+            /* border: 3px solid brown; */
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-shadow: 1px 1px 2px black, 0 0 3px darkgoldenrod, 0 0 4px darkblue;
+            opacity: 0.2;
+        }
+        
+        #centerLabel {
+            position: absolute;
+            color: darkred;
+            top: 230px;
+            left: 550px;
+            width: 240px;
+            height: 60px;
+            padding-top: 20px;
+            border-radius: 5px;
+            font-size: 25px;
+            z-index: 0;
+            background-color: transparent;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-shadow: 1px 1px 2px black, 0 0 3px darkgoldenrod, 0 0 4px yellow;
+        }
+        #hCenter,#vCenter{
+            position:absolute;
+            border-top: 1px solid red;
+            width:900px;
+            display:inline-block;
+            background-color:transparent;
+            padding:0;
+            margin:0;
+            top:0;
+            left:0;
+            transform-origin: 0% 50%;
+            height:0px;
+            z-index:200;
+        }
+        #vCenter{
+            border-bottom: 1px solid blue;
+            border-top: 0px;
+            transform: rotate(-90deg);
+            top:700px;
+            left:0px;
+        }
+        #grid,#vCenter,#hCenter {
+                display:none;
+        }
+    </style>
+
+</head>
+
+<script>
+    $numTicks = 15;
+    $max = 100;
+    $min = 69;
+    $step = ($max - $min) / ($numTicks - 1);
+    stepWidth = 18;
+    initialTilt = 36;
+    tickFile = "img/NewArranged/greenTick.png";
+
+    yellowThreshold = 84;
+    redThreshold = 80;
+
+    /* red 0-80
+    yellow 80-84
+    green 84-100*/
+</script>
+
+
+<body>
+    <img id="fill" src="imgFinal/backgrounds/white stone2.png" style="opacity:0.8" />
+    <div id="hCenter">hCenter</div>
+    <div id="vCenter">vCenter</div>
+   <img id="grid" src="Processing/gridpaper.gif" style="top:0;left:0;opacity:0.2;padding:0;margin:0;position:absolute;z-index:100" />
+    -->
+
+<!--
+    <img id="rot" class="arrow" src="imgFinal/Zeiger/rolex/rred.png" style="display.:none;">
+    <img id="gelb" class="arrow" src="imgFinal/Zeiger/rolex/ryellow.png" style="display.:none;">
+    <img id="gruen" class="arrow" src="imgFinal/Zeiger/rolex/rgreen.png" style="display.:none;">
+
+    -->
+
+    <div id="centerNum">
+        99%
+    </div>
+
+    <div id="centerLabel">
+        ASA - Average Speed<br>of Answer %
+    </div>
+
+    <!--
+    <img id="rot" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 red.png" onload="cter++" style="display.:none;">
+    <img id="gelb" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 yellow.png" onload="cter++" style="display.:none;">
+    <img id="gruen" class="arrow" src="imgFinal/Zeiger/oldtimer/cool2 green.png" onload="cter++" style="display.:none;">
+    !-->
+</body>
+<script>
+
+    var oldTimer = new Arrow();
+    oldTimer.folder = "cool";
+    oldTimer.yName = "real yellow.png";
+    oldTimer.rName = "real red.png";
+    oldTimer.gName = "real green.png";
+    oldTimer.yCenter = "84%";
+    oldTimer.initVals();
+    oldTimer.addImages();
+    oldTimer.initCSS();
+
+    var chrome = new Border();
+    chrome.name = "chrome";
+    chrome.initVals();
+    chrome.addImages();
+    chrome.initCSS();
+
+
+    $('#fill').height(window.innerHeight - 35);
+    $('#fill').width(window.innerHeight - 35);
+    $('#fill').css('left', (window.innerWidth / 2 - (window.innerHeight - 15) / 2) + 'px');
+    $('#fill').css('top', '30px');
+
+
+    $('#vCenter').css('left', (window.innerWidth / 2) + 'px');
+    $('#hCenter').css('top', (window.innerHeight / 2) + 'px');
+
+
+    $('#tacho').height(window.innerHeight - 15);
+    $('#tacho').width(window.innerHeight);
+    $('#tacho').css('left', (window.innerWidth / 2) - ($('#tacho').width()/2)+ 'px');
+
+
+
+
+    function addTick() {
+        var divArr = new Array();
+        for ($i = 0; $i < $numTicks; $i++) {
+            val = Math.round($min + $step * ($i));
+            tickFile = "imgFinal/Ticks/uhrzeigerD.png";
+            if (val < redThreshold) tickFile = "imgFinal/Ticks/uhrzeigerD.png";
+            if (val >= redThreshold && val <= yellowThreshold) tickFile = "imgFinal/Ticks/uhrzeigerD.png";
+
+            divArr[$i] = $("<div id='cont" + $i + "' class='trans'>" +
+                "<img class='tick1' src='" + tickFile + "' align='left' width='15%'/>" +
+                "</div>");
+
+            $("body").append(divArr[$i]);
+            $('#cont' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
+        }
+    }
+
+    addTick();
+
+
+
+
+    function addNum() {
+        var divArr = new Array();
+        for ($i = 0; $i < $numTicks; $i++) {
+
+            val = Math.round($min + $step * ($i));
+            cls = "iNums NumGreen";
+            if (val < redThreshold) cls = "iNums NumRed";
+            if (val >= redThreshold && val <= yellowThreshold) cls = "iNums NumYellow";
+
+
+            divArr[$i] = $("<div class='nums' id='inner" + $i + "'><div class='" + cls + "' id='bNums" + $i + "'>" +
+                Math.round(
+                    $min +
+                    $step * ($i)) + "</div></div>");
+
+
+
+            $("body").append(divArr[$i]);
+            $('#inner' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
+            $('#bNums' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) * -1 + 'deg)');
+
+        }
+    }
+
+    addNum();
+
+    transTopParam = 25;
+
+    numsLeftParam = 30;
+    numsTopParam = 50;
+    numsWidthParam = 160;
+
+    arrowLeftParam = 332;
+    arrowTopParam = 274;
+    
+    $('.trans').css('width', $('#tacho').width()/2 + 'px');
+
+    $('.trans').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 'px');
+    $('.trans').css('top', (window.innerHeight - transTopParam) / 2 + 'px');
+
+    $('.nums').css('left', (window.innerWidth / 2) - ($('.nums').width()) -(numsLeftParam)+ 'px');
+    $('.nums').css('top', (window.innerHeight - numsTopParam) / 2 + 'px');
+    $('.nums').css('width', (window.innerHeight - numsWidthParam) / 2 + 'px');
+
+
+    $('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + arrowLeftParam + 'px');
+    $('.arrow').css('top', (window.innerHeight) / 2 - arrowTopParam + 'px');
+
+    $('#centerLabel').css('left', (window.innerWidth / 2 - ( $('#centerLabel').width() / 2 )) + 'px');
+    $('#centerNum').css('left', (window.innerWidth / 2 - ($('#centerNum').width() / 2) )+ 'px');
+
+
+    $("#rot").css('opacity', 1);
+
+    $("#rot").animateRotate(-120, -45, 7000, "linear", 0);
+    $("#gelb").animateRotate(-120, -45, 7000, "linear", 100);
+
+    $('#grid').css('width', window.innerWidth  + 'px');
+    $('#grid').css('height', window.innerHeight+'px');
+
+    setTimeout(runNext1, 7000);
+    setTimeout(runNext2, 7000 * 2);
+
+    function runNext1() {
+        $("#rot").css('opacity', 0);
+        $("#gelb").animateRotate(-45, 0, 7000, "linear", 0);
+        $("#gruen").animateRotate(-45, 0, 7000, "linear", 100);
+    }
+
+    function runNext2() {
+        $("#gelb").css('opacity', 0);
+        $("#gelb").animateRotate(0, 120, 7000, "linear", 0);
+        $("#gruen").animateRotate(0, 120, 7000, "linear", 100);
+
+    }
+</script>
+
+</html>
