@@ -78,10 +78,11 @@
         }
         
         #centerNum {
+            /* percentage running in the bottom square */
             position: absolute;
             color: black;
-            top: 530px;
-            left: 570px;
+            top: 470px;
+            left: 350px;
             width: 200px;
             height: 60px;
             padding-top: 20px;
@@ -93,14 +94,15 @@
             text-align: center;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-shadow: 1px 1px 2px black, 0 0 3px darkgoldenrod, 0 0 4px darkblue;
-            opacity: 0.2;
+            opacity: 0.35;
         }
         
-        #centerLabel {
+        #centerLabel { 
+            /* ASA Average Speed of Answer */
             position: absolute;
             color: darkred;
             top: 230px;
-            left: 550px;
+            left: 320px;
             width: 240px;
             height: 60px;
             padding-top: 20px;
@@ -249,7 +251,7 @@
     $('.nums').css('top', (window.innerHeight - 50) / 2 + 'px');
     $('.nums').css('width', (window.innerHeight - 160) / 2 + 'px');
 
-    $('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 310 + 'px');
+    $('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 290 + 'px');
     $('.arrow').css('top', (window.innerHeight) / 2 - 260 + 'px');
 
     $("#rot").css('opacity', 1);
