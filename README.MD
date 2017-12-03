@@ -2,14 +2,14 @@
 
 Visualize KPIs and Team Performances
 
-## Getting Started
+## What it can do
 
 Visualize international teams and statistics
 
 
-### And coding style tests
+### Technologies
 
-Explain what these tests test and why
+These are the technologies used
 
 ```
 HTML
