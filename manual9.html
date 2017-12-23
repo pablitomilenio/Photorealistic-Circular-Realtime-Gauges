@@ -19,18 +19,27 @@
         .arrow {
         }
         
-        .trans,
+        .trans {
+            transform-origin: 100% 50%;
+            width: 300px;
+            position: absolute;
+            background-color: blue;
+            border: 0px solid black;
+            padding: 0;
+            opacity: 0.5;
+        }
         .nums {
             transform-origin: 100% 50%;
             width: 300px;
             position: absolute;
-            background-color: transparent;
+            background-color: orange;
             border: 0px solid black;
             padding: 0;
         }
         
         .tick1 {
             border: 0px solid black;
+            /* this is the padding left that separates the ticks from the upper border*/
             padding-left: 50px;
             filter: drop-shadow(5px 5px 5p orange);
         }
@@ -49,6 +58,7 @@
             width: 50px;
             color: orangered;
             z-index: 0;
+            /* this is the left margin that distances the numbers from the ticks */
             margin-left: 60px;
         }
         
@@ -193,7 +203,10 @@
 
 
 
+// The document has container divs cont1 cont2 cont3 etc chich contain img elements with the ticks
 
+
+//In the document first the ticks are being added
     function addTick() {
         var divArr = new Array();
         for ($i = 0; $i < $numTicks; $i++) {
@@ -212,10 +225,12 @@
     }
 
     addTick();
+    //class trans
 
 
 
-
+//now the nums are being added below
+//nums are the outer speichen inums are the inner numbers
     function addNum() {
         var divArr = new Array();
         for ($i = 0; $i < $numTicks; $i++) {
@@ -231,8 +246,6 @@
                     $min +
                     $step * ($i)) + "</div></div>");
 
-
-
             $("body").append(divArr[$i]);
             $('#inner' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) + 'deg)');
             $('#bNums' + $i).attr('style', 'transform: rotate(' + ($i * stepWidth - initialTilt) * -1 + 'deg)');
@@ -242,6 +255,14 @@
 
     addNum();
 
+    //here the parameters are bein added later to the classes of the nums and ticks
+    //regarding their relative distances
+
+    //.trans is the container of only the ticks
+    //.nums is the container of only the numbers
+
+    //what is written here affects the whole class
+    //this is the global positioning of the framework
 
     $('.trans').css('left', (window.innerWidth / 2 - (window.innerHeight - 60) / 2) + 'px');
     $('.trans').css('top', (window.innerHeight - 25) / 2 + 'px');
@@ -256,11 +277,11 @@
 
     $("#rot").css('opacity', 1);
 
-    $("#rot").animateRotate(-120, -45, 7000, "linear", 0);
-    $("#gelb").animateRotate(-120, -45, 7000, "linear", 100);
+    //$("#rot").animateRotate(-120, -45, 7000, "linear", 0);
+    //$("#gelb").animateRotate(-120, -45, 7000, "linear", 100);
 
-    setTimeout(runNext1, 7000);
-    setTimeout(runNext2, 7000 * 2);
+    //setTimeout(runNext1, 7000);
+    //setTimeout(runNext2, 7000 * 2);
 
     function runNext1() {
         $("#rot").css('opacity', 0);
