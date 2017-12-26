@@ -3,7 +3,7 @@
 
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>Service Level Agreement</title>
+    <title>Gauge</title>
     <script src="js/jquery-3.1.1.min.js"></script>
     <script src="js/jquery.cookie.js"></script>
     <script src="js/aro8.js"></script>
@@ -11,6 +11,7 @@
     <script src="js/objects.js"></script>
 
     <style>
+        /* border width in original picture 115/1000 = 0.115 */
         #tacho,
         #fill {
             position: absolute;
@@ -23,7 +24,7 @@
             transform-origin: 100% 50%;
             width: 300px;
             position: absolute;
-            background-color: blue;
+            background-color: transparent
             border: 0px solid black;
             padding: 0;
             opacity: 0.5;
@@ -32,9 +33,11 @@
             transform-origin: 100% 50%;
             width: 300px;
             position: absolute;
-            background-color: orange;
+            background-color: transparent;
             border: 0px solid black;
             padding: 0;
+            padding-left: 40px;
+            opacity:0.4;
         }
         
         .tick1 {
@@ -44,11 +47,6 @@
             filter: drop-shadow(5px 5px 5p orange);
         }
         
-        .nums {
-            padding-left: 40px;
-            border: 0px solid black;
-            background-color: transparent;
-        }
         
         .iNums {
             font-size: 40px;
@@ -255,6 +253,21 @@
 
     addNum();
 
+
+//RESIZING
+    // $('.tick1').css('padding-left', (  Math.pow($('#tacho').width(),0.60)  ) + 'px');   Works for bigger resolutions
+    //this is a complicated formula extrapolated by excel which calculates the left margin of the ticks from 
+    //the border
+    adaptiveTickMargin = Math.pow( $('#tacho').width(),0.5 ) * ($('#tacho').width()*0.0024);
+    $('.tick1').css('padding-left', ( adaptiveTickMargin  ) + 'px');
+    console.log($('#tacho').width());
+    console.log($('.tick1').css('padding-left'));
+
+    numMargin = adaptiveTickMargin;
+        
+    $('.iNums').css('margin-left', (numMargin) + 'px');
+
+
     //here the parameters are bein added later to the classes of the nums and ticks
     //regarding their relative distances
 
@@ -271,6 +284,32 @@
     $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 70) / 2) + 'px');
     $('.nums').css('top', (window.innerHeight - 50) / 2 + 'px');
     $('.nums').css('width', (window.innerHeight - 160) / 2 + 'px');
+
+
+/* RESIZE inner nums*/ //555 width
+/*
+    $('.iNums').css('font-size', 27); // was 40
+    $('.iNums').css('margin-left', 20); //was 60
+    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 83) / 2) + 'px'); //was 80
+    $('.nums').css('top', (window.innerHeight - 40) / 2 + 'px'); //was 50
+
+/* RESIZE inner nums*/ //769 width
+/*
+    $('.iNums').css('font-size', 42); // was 40
+    $('.iNums').css('margin-left', 65); //was 60
+    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 65) / 2) + 'px'); //was 80
+    $('.nums').css('top', (window.innerHeight - 55) / 2 + 'px'); //was 50
+
+/* RESIZE inner nums*/ //900 width
+
+    $('.iNums').css('font-size', 55); // was 40
+    $('.iNums').css('margin-left', 95); //was 60
+    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 55) / 2) + 'px'); //was 80
+    $('.nums').css('top', (window.innerHeight - 65) / 2 + 'px'); //was 50
+
+
+/* RESIZE inner nums*/
+
 
     $('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 290 + 'px');
     $('.arrow').css('top', (window.innerHeight) / 2 - 260 + 'px');
