@@ -258,6 +258,8 @@
     // $('.tick1').css('padding-left', (  Math.pow($('#tacho').width(),0.60)  ) + 'px');   Works for bigger resolutions
     //this is a complicated formula extrapolated by excel which calculates the left margin of the ticks from 
     //the border
+
+    //place the ticks always in the rigth place
     adaptiveTickMargin = Math.pow( $('#tacho').width(),0.5 ) * ($('#tacho').width()*0.0024);
     $('.tick1').css('padding-left', ( adaptiveTickMargin  ) + 'px');
     console.log($('#tacho').width());
@@ -286,27 +288,19 @@
     $('.nums').css('width', (window.innerHeight - 160) / 2 + 'px');
 
 
-/* RESIZE inner nums*/ //555 width
-/*
-    $('.iNums').css('font-size', 27); // was 40
-    $('.iNums').css('margin-left', 20); //was 60
-    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 83) / 2) + 'px'); //was 80
-    $('.nums').css('top', (window.innerHeight - 40) / 2 + 'px'); //was 50
+/* RESIZE inner nums*/
 
-/* RESIZE inner nums*/ //769 width
-/*
-    $('.iNums').css('font-size', 42); // was 40
-    $('.iNums').css('margin-left', 65); //was 60
-    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 65) / 2) + 'px'); //was 80
-    $('.nums').css('top', (window.innerHeight - 55) / 2 + 'px'); //was 50
+    adaptiveNumberSize = Math.pow($('#tacho').width(),1.4)/260 ;
+    adaptiveNumLeftMargin = Math.pow($('#tacho').width(),2.55)*20/7256588 ;
+    
+    if($('#tacho').width()>700) adaptiveLeftPos = Math.pow($('#tacho').width(),0.605);
+    else adaptiveLeftPos = Math.pow($('#tacho').width(),0.5)+55;
+    adaptiveTopPos = Math.pow($('#tacho').width(),0.61);
 
-/* RESIZE inner nums*/ //900 width
-
-    $('.iNums').css('font-size', 55); // was 40
-    $('.iNums').css('margin-left', 95); //was 60
-    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - 55) / 2) + 'px'); //was 80
-    $('.nums').css('top', (window.innerHeight - 65) / 2 + 'px'); //was 50
-
+    $('.iNums').css('font-size', adaptiveNumberSize); // was 40
+    $('.iNums').css('margin-left', adaptiveNumLeftMargin); //was 60
+    $('.nums').css('left', (window.innerWidth / 2 - (window.innerHeight - adaptiveLeftPos) / 2) + 'px'); //was 80
+    $('.nums').css('top', (window.innerHeight - adaptiveTopPos) / 2 + 'px'); //was 50
 
 /* RESIZE inner nums*/
 
