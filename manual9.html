@@ -61,18 +61,21 @@
         }
         
         .iNums.NumRed {
-            color: darkgray;
+            color:darkred;
             text-shadow: 1px 1px 2px black, 0 0 4px darkred, 0 0 5px mediumvioletred;
         }
         
         .iNums.NumYellow {
-            color: darkgray;
+            color:darkgoldenrod;
             text-shadow: 1px 1px 2px black, 0 0 4px darkgoldenrod, 0 0 5px yellow;
         }
         
         .iNums.NumGreen {
-            color: darkgray;
+            color:darkgreen;
             text-shadow: 1px 1px 2px black, 0 0 4px green, 0 0 5px lawngreen;
+        }
+        .iNums {
+            color: cyan;
         }
         
         #cont1 {
@@ -122,6 +125,12 @@
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             text-shadow: 1px 1px 2px black, 0 0 3px darkgoldenrod, 0 0 4px yellow;
         }
+        #screws{
+            position: absolute;
+            top:350px;
+            left:360px;
+            opacity:0;
+        }
     </style>
 
 </head>
@@ -145,8 +154,8 @@
 
 
 <body>
-    <img id="fill" src="imgFinal/backgrounds/orange stone.png" style="opacity:0.8" />
-    
+    <img id="fill" src="imgFinal/backgrounds/white stone2.png" style="opacity:0.8" />
+
 
 <!--
     <img id="rot" class="arrow" src="imgFinal/Zeiger/rolex/rred.png" style="display.:none;">
@@ -161,6 +170,10 @@
 
     <div id="centerLabel">
         ASA - Average Speed<br>of Answer
+    </div>
+
+    <div id="screws">
+        <img src="imgFinal/backgrounds/2_Screws.png" width="80%"/>
     </div>
 
     <!--
@@ -182,7 +195,7 @@
     oldTimer.initCSS();
 
     var gg = new Border();
-    gg.name = "Golden_Gossip";
+    gg.name = "Chrome";
     gg.initVals();
     gg.addImages();
     gg.initCSS();
@@ -327,6 +340,11 @@
 
     $('.arrow').css('left', (window.innerWidth / 2) - $('.arrow').width()/2 + 'px');      
     $('.arrow').css('top', ((window.innerHeight)*0.18 ));
+
+
+
+
+    
 
     $("#rot").css('opacity', 1);
 
