@@ -138,10 +138,10 @@
 <script>
     $numTicks = 15;
     $max = 100;
-    $min = 69;
+    $min = 68;
     $step = ($max - $min) / ($numTicks - 1);
     stepWidth = 18;
-    initialTilt = 34;
+    initialTilt = 37;
     tickFile = "img/NewArranged/greenTick.png";
 
     yellowThreshold = 84;
@@ -344,21 +344,22 @@
 
 
 
-    
+
 
     $("#rot").css('opacity', 1);
 
-    
-    $("#rot").animateRotate(-120, -45, 7000, "linear", 0);
-    $("#gelb").animateRotate(-120, -45, 7000, "linear", 100);
+      
+    $("#rot").animateRotate(-120, -20, 7000, "linear", 0);
+    $("#gelb").animateRotate(-120, -20, 7000, "linear", 100);
+
 
     setTimeout(runNext1, 7000);
-    setTimeout(runNext2, 7000 * 2);
+    setTimeout(runNext2, 7000+1166);
 
     function runNext1() {
         $("#rot").css('opacity', 0);
-        $("#gelb").animateRotate(-45, 0, 7000, "linear", 0);
-        $("#gruen").animateRotate(-45, 0, 7000, "linear", 100);
+        $("#gelb").animateRotate(-20, 0, 1166, "linear", 0);
+        $("#gruen").animateRotate(-20, 0, 1166, "linear", 100);
     }
 
     function runNext2() {
