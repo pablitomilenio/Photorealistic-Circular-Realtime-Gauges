@@ -306,11 +306,20 @@
 
     sw = window.innerWidth;
     sh = window.innerHeight;
+
+    $('#centerNum').css('font-size',$('#tacho').width()*0.06);
+    $('#centerNum').width($('#tacho').width()*0.30);
+    $('#centerNum').height($('#centerNum').width()*0.35);
+    
     $('#centerNum').css('left',sw/2 - $('#centerNum').width()/2);
     $('#centerNum').css('top',sh*0.65);
 
+
+    $('#centerLabel').css('font-size',$('#tacho').width()*0.035);
     $('#centerLabel').css('left',sw/2 - $('#centerLabel').width()/2);
     $('#centerLabel').css('top',sh*0.30);
+
+
 
     $('.arrow').height($('#tacho').width()*0.4);
     $('.arrow').width($('.arrow').height()*0.312);
