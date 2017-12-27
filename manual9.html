@@ -112,7 +112,7 @@
             top: 230px;
             left: 320px;
             width: 240px;
-            height: 60px;
+            height: 100px;
             padding-top: 20px;
             border-radius: 5px;
             font-size: 25px;
@@ -145,7 +145,7 @@
 
 
 <body>
-    <img id="fill" src="imgFinal/backgrounds/white stone2.png" style="opacity:0.8" />
+    <img id="fill" src="imgFinal/backgrounds/orange stone.png" style="opacity:0.8" />
     
 
 <!--
@@ -181,11 +181,11 @@
     oldTimer.addImages();
     oldTimer.initCSS();
 
-    var chrome = new Border();
-    chrome.name = "chrome";
-    chrome.initVals();
-    chrome.addImages();
-    chrome.initCSS();
+    var gg = new Border();
+    gg.name = "Golden_Gossip";
+    gg.initVals();
+    gg.addImages();
+    gg.initCSS();
 
 
     $('#fill').height(window.innerHeight - 35);
@@ -314,10 +314,11 @@
     $('#centerNum').css('left',sw/2 - $('#centerNum').width()/2);
     $('#centerNum').css('top',sh*0.65);
 
-
+    $('#centerLabel').width($('#tacho').width()*0.35);
     $('#centerLabel').css('font-size',$('#tacho').width()*0.035);
     $('#centerLabel').css('left',sw/2 - $('#centerLabel').width()/2);
     $('#centerLabel').css('top',sh*0.30);
+    
 
 
 
