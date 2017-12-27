@@ -38,8 +38,9 @@ class Arrow extends GaugeObject {
             'height': this.height,
             'position': 'absolute',
             'opacity': '0',
-            'z-index': '10'
-        });
+            'z-index': '10',
+            'width': '103px'
+        });        
     }
 }
 

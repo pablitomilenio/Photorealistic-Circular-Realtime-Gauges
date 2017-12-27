@@ -262,8 +262,8 @@
     //place the ticks always in the rigth place
     adaptiveTickMargin = Math.pow( $('#tacho').width(),0.5 ) * ($('#tacho').width()*0.0024);
     $('.tick1').css('padding-left', ( adaptiveTickMargin  ) + 'px');
-    console.log($('#tacho').width());
-    console.log($('.tick1').css('padding-left'));
+    //console.log($('#tacho').width());
+    //console.log($('.tick1').css('padding-left'));
 
     numMargin = adaptiveTickMargin;
         
@@ -312,8 +312,7 @@
     $('#centerLabel').css('left',sw/2 - $('#centerLabel').width()/2);
     $('#centerLabel').css('top',sh*0.30);
 
-
-    $('.arrow').css('left', (window.innerWidth / 2 - (window.innerHeight) / 2) + 290 + 'px');
+    $('.arrow').css('left', (window.innerWidth / 2) - $('.arrow').width()/2 + 'px');      
     $('.arrow').css('top', (window.innerHeight) / 2 - 260 + 'px');
 
     $("#rot").css('opacity', 1);
